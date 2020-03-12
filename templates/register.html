@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div>
+    {{ form.csrf_token }}
+</div>
+<form action="" method="post" novalidate>
+    {{ form.hidden_tag() }}
+    {% for field in form if field.name != "csrf_token" %}
+        <div style="padding-top: 10px;">
+            {% if field.name != "submit" %}
+                {{ field.label() }}
+                {{ field(class="form-control") }}
+            {% else %}
+                {{ field(type="submit", class="btn btn-primary") }}
+            {% endif %}
+        </div>
+    {% endfor %}
+</form>
+{% endblock %}
